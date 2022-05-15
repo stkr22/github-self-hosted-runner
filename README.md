@@ -8,12 +8,13 @@ Get a valid token:
 https://github.com/settings/tokens/new?scopes=repo
 
 ```Bash
-docker run -it --name {{ github_runner_url }} \
+docker create --name {{ github_runner_url }} \
     -e RUNNER_NAME={{ github_runner_url }} \
     -e GITHUB_ACCESS_TOKEN={{ github_pat_scope_repo }} \
     -e RUNNER_REPOSITORY_URL={{ github_repo_url }} \
     -v /var/run/docker.sock:/var/run/docker.sock \
     ghcr.io/stkr22/github-self-hosted-runner:main
+docker start {{ github_runner_url }}
 ```
 
 
